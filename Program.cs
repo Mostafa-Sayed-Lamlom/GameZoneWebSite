@@ -1,5 +1,7 @@
 
 
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 #region ConnectToSQLDataBase
@@ -13,6 +15,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+#region Dependency Injections
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IDeviceService, DeviceService>();
+builder.Services.AddScoped<IGameService, GameService>();
+#endregion
 
 var app = builder.Build();
 
